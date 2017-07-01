@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackColl : MonoBehaviour {
+public class AttackColl {
 
 	private Node c;
 	private int howMany;
@@ -78,7 +78,7 @@ public class AttackColl : MonoBehaviour {
 				p = p.link;
 				c = p;
 			} else {
-				previous.link = previous.link;
+				previous.link = p.link;
 			}
 			howMany--;
 		}
@@ -89,7 +89,7 @@ public class AttackColl : MonoBehaviour {
 		Node p = c;
 		int j = 0;
 		while (j < howMany){
-			System.Console.WriteLine (p.attack);
+			Debug.Log (p.attack.toString());
 			p = p.link;
 			j++;
 		}
@@ -97,19 +97,18 @@ public class AttackColl : MonoBehaviour {
 
 	public bool equals(AttackColl obj)
 	{
-		bool result = false;
+		Node p = c;
 		if (obj.get_howmany () == howMany) {
-			Node p = c;
-			while ((p != null) && (obj.belongs (p.info))) {
+			while ((p != null) && (obj.belongs (p.attack))) {
 				p = p.link;
 			}
-		}return result;
+		}return p == null;
 	}
 
-	private class Node
+	public class Node
 	{
-		Attack attack;
-		Node link;
+		public Attack attack;
+		public Node link;
 
 		public Node()
 		{

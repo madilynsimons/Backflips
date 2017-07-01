@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour {
+public class Attack {
 
 	readonly string DEFAULTTITLE = "nameless";
 	readonly int DEFAULTPP = 20;

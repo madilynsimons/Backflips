@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackList : MonoBehaviour {
+public class AttackList {
 
 	readonly int MAXNUMOFATTACKS = 4;
 	LinkedList<Attack> a;
