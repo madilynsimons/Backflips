@@ -51,6 +51,11 @@ public class AttackObject {
 		return !(a.title == b.title && a.maxPP == b.maxPP);
 	}
 
+	public string getTitle()
+	{
+		return title;
+	}
+
 	public string toString()
 	{
 		return this.title;

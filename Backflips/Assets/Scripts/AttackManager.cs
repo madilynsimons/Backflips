@@ -50,4 +50,10 @@ public class AttackManager : MonoBehaviour {
 		file.Close ();
 	}
 
+	public AttackObject getAttack(string title)
+	{
+		return attackColl.getAttack (title);
+	}
+
+
 }

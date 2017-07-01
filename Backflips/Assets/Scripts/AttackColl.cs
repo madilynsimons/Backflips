@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AttackColl {
 
-	private Node c;
-	private int howMany;
+	protected Node c;
+	protected int howMany;
+	public AttackManager attackManager;
 
 	public AttackColl()
 	{
@@ -40,6 +41,17 @@ public class AttackColl {
 		}
 	}
 
+	public AttackObject getAttack(string title)
+	{
+		Node p = c;
+		while((p != null) && (p.attack.getTitle() != title)){
+			p = p.link;
+		}
+		if (p != null)
+			return p.attack;
+		return null;
+	}
+
 	public bool belongs(AttackObject a)
 	{
 		Node p = c;
@@ -49,8 +61,15 @@ public class AttackColl {
 		return p != null;
 	}
 
-
-
+	public bool belongs(string name)
+	{
+		Node p = c;
+		while((p != null) && (p.attack.getTitle() != name)){
+			p = p.link;
+		}
+		return p != null;
+	}
+		
 	public void insert(AttackObject a)
 	{
 		Node p = c;
@@ -62,6 +81,11 @@ public class AttackColl {
 			p = new Node (a, c);
 			c = p;
 		}
+	}
+
+	public void insert(string title)
+	{
+		insert (getAttack (title));
 	}
 
 	public void omit(AttackObject a)
