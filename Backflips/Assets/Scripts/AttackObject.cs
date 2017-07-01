@@ -20,7 +20,7 @@ public class AttackObject {
 		size = DEFAULTSIZE;
 	}
 
-	public AttackObject(string title, int pp, int damage, Size size)
+	public AttackObject(string title, int pp, Size size)
 	{
 		this.title = title;
 		maxPP = pp;
@@ -33,6 +33,7 @@ public class AttackObject {
 		title = a.title;
 		maxPP = a.maxPP;
 		currentPP = a.maxPP;
+		size = a.size;
 	}
 
 	public Size getSize()

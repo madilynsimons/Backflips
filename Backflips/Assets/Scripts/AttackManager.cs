@@ -4,7 +4,7 @@ using System.IO;
 
 public class AttackManager : MonoBehaviour {
 
-	readonly string AttackListPath = "Documents/AttackList.txt";
+	readonly string AttackListPath = "Documents/Attacks/AttackList.txt";
 	public AttackColl attackColl;
 
 	// Use this for initialization
@@ -19,7 +19,7 @@ public class AttackManager : MonoBehaviour {
 			string[] a = line.Split ();
 
 			Size s = Size.NULL;
-			switch (int.Parse(a [3]))
+			switch (int.Parse(a [2]))
 			{
 			case 1:
 				s = Size.ONE;
@@ -39,18 +39,15 @@ public class AttackManager : MonoBehaviour {
 			}
 
 			AttackObject attack = new AttackObject
-				(a [0], int.Parse (a [1]), int.Parse (a [2]), s);
+				(a [0], int.Parse (a [1]), s);
 
 			attackColl.insert (attack);
 		}
 
-		attackColl.print ();
+		// uncomment for debugging purposes
+		//attackColl.print ();
 
 		file.Close ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
