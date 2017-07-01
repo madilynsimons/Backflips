@@ -9,12 +9,14 @@ public class Fighter : Character
     int strength;
     int maxHealth;
     int currentHealth;
+	FighterAttackColl myAttacks;
 
     public Fighter()
     {
         maxHealth = DEFAULTHEALTH;
         currentHealth = DEFAULTHEALTH;
         strength = DEFAULTSTRENGTH;
+		myAttacks = new FighterAttackColl ();
     }
 
     public Fighter(int strength, int maxHealth)
@@ -22,6 +24,7 @@ public class Fighter : Character
         this.maxHealth = maxHealth;
         this.strength = strength;
         currentHealth = maxHealth;
+		myAttacks = new FighterAttackColl ();
     }
 
     public void attack(Fighter c, int damage)

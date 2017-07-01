@@ -5,19 +5,20 @@ using UnityEngine;
 public class FighterAttackColl : AttackColl
 {
 
-	readonly int NUMOFATTACKSDEFAULT = 6;
-	int maxNumOfAttacks;
+	readonly int DEFAULTSLOTS = 6;
+	int maxNumOfSlots;
+	int currentNumOfSlots;
 
 	public FighterAttackColl()
 	{
-		maxNumOfAttacks = NUMOFATTACKSDEFAULT;
+		maxNumOfSlots = DEFAULTSLOTS;
 		c = new Node ();
 		howMany = 0;
 		insert ("TACKLE");
 	}
 
 	public FighterAttackColl(int i){
-		maxNumOfAttacks = i;
+		maxNumOfSlots = i;
 		c = new Node ();
 		howMany = 0;
 		insert ("TACKLE");
@@ -25,7 +26,7 @@ public class FighterAttackColl : AttackColl
 
 	new public void insert(AttackObject a)
 	{
-		if (howMany < maxNumOfAttacks) {
+		if (currentNumOfSlots + a.getSize() <= maxNumOfSlots) {
 			Node p = c;
 			while ((p != null) && (p.attack != a)) {
 				p = p.link;
@@ -35,12 +36,13 @@ public class FighterAttackColl : AttackColl
 				p = new Node (a, c);
 				c = p;
 			}
+			currentNumOfSlots += a.getSize ();
 		}
 	}
 
 	new public void omit(AttackObject a)
 	{
-		if (howMany > 1) {
+		if (a.getTitle() != "TACKLE") {
 			Node p = c;
 			Node previous = null;
 			while ((p != null) && (p.attack != a)) {
@@ -55,6 +57,7 @@ public class FighterAttackColl : AttackColl
 					previous.link = p.link;
 				}
 				howMany--;
+				currentNumOfSlots -= a.getSize ();
 			}
 		}
 	}

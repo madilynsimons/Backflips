@@ -36,9 +36,9 @@ public class AttackObject {
 		size = a.size;
 	}
 
-	public Size getSize()
+	public int getSize()
 	{
-		return size;
+		return (int)size;
 	}
 
 	public static bool operator ==(AttackObject a, AttackObject b)

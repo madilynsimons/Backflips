@@ -19,6 +19,23 @@ public class AttackColl {
 		return howMany;
 	}
 
+	// TODO -- test this method
+	public AttackObject getAttack(int index)
+	{
+		if (howMany >= index) {
+			throw new UnassignedReferenceException ();
+			return null;
+		} else if (index == 0) {
+			return c.attack;
+		} else {
+			Node p = c;
+			for (int y = 0; y < index; y++) {
+				p = p.link;
+			}
+			return p.attack;
+		}
+	}
+
 	public void copy(AttackColl obj)
 	{
 		if (this != obj)
@@ -72,14 +89,16 @@ public class AttackColl {
 		
 	public void insert(AttackObject a)
 	{
-		Node p = c;
-		while ((p != null) && (p.attack != a)) {
-			p = p.link;
-		}
-		if (p == null) {
-			howMany++;
-			p = new Node (a, c);
-			c = p;
+		if (a != null) {
+			Node p = c;
+			while ((p != null) && (p.attack != a)) {
+				p = p.link;
+			}
+			if (p == null) {
+				howMany++;
+				p = new Node (a, c);
+				c = p;
+			}
 		}
 	}
 
