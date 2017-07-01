@@ -27,6 +27,14 @@ public class Attack : MonoBehaviour {
 		this.damage = damage;
 	}
 
+	public Attack(Attack a)
+	{
+		title = a.title;
+		maxPP = a.maxPP;
+		currentPP = a.maxPP;
+		damage = a.damage;
+	}
+
 	public static bool operator ==(Attack a, Attack b)
 	{
 		return a.title == b.title && a.maxPP == b.maxPP && a.damage == b.damage;
@@ -35,5 +43,10 @@ public class Attack : MonoBehaviour {
 	public static bool operator !=(Attack a, Attack b)
 	{
 		return !(a.title == b.title && a.maxPP == b.maxPP && a.damage == b.damage);
+	}
+
+	public string toString()
+	{
+		return this.title;
 	}
 }
