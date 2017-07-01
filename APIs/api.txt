@@ -1,0 +1,44 @@
+Backflips Scripts API
+
+#objects
+Attack               Attack.cs
+Attack Collection    AttackColl.cs
+Character            Character.cs
+Enemy                Enemy.cs
+Fighter              Fighter.cs
+Player               Player.cs
+
+#Attack
+public class Attack
+public Attack()
+public Attack(string title, int pp, int damage)
+public Attack(Attack a)
+public static bool operator ==(Attack a, Attack b)
+public static bool operator !=(Attack a, Attack b)
+public string toString()
+
+#Attack Collection
+public class AttackColl
+public AttackColl()
+public int get_howmany()
+public void copy(AttackColl obj)
+public bool belongs(Attack a)
+public void insert(Attack a)
+public void omit(Attack a)
+public void print()
+public bool equals(AttackColl obj)
+public class Node
+
+#Character
+public class Character : MonoBehavior
+public Character()
+public Character(string title)
+
+#Enemy
+public class Enemy : Fighter
+
+#Fighter
+public class Fighter : Character
+
+#Player
+public class Player : Fighter
