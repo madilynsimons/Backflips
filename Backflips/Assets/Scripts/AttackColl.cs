@@ -27,20 +27,20 @@ public class AttackColl {
 				c = null;
 			} else {
 				c = new Node ();
-				c.attack = new Attack (obj.c.attack);
+				c.attack = new AttackObject (obj.c.attack);
 				Node q = obj.c.link;
 				Node p = c;
 				while (q != null) {
 					p.link = new Node();
 					p = p.link;
-					p.attack = new Attack(q.attack);
+					p.attack = new AttackObject(q.attack);
 					q = q.link;
 				}
 			}
 		}
 	}
 
-	public bool belongs(Attack a)
+	public bool belongs(AttackObject a)
 	{
 		Node p = c;
 		while((p != null) && (p.attack != a)){
@@ -51,7 +51,7 @@ public class AttackColl {
 
 
 
-	public void insert(Attack a)
+	public void insert(AttackObject a)
 	{
 		Node p = c;
 		while ((p != null) && (p.attack != a)) {
@@ -64,7 +64,7 @@ public class AttackColl {
 		}
 	}
 
-	public void omit(Attack a)
+	public void omit(AttackObject a)
 	{
 		Node p = c;
 		Node previous = null;
@@ -107,18 +107,18 @@ public class AttackColl {
 
 	public class Node
 	{
-		public Attack attack;
+		public AttackObject attack;
 		public Node link;
 
 		public Node()
 		{
-			attack = new Attack();
+			attack = new AttackObject();
 			link = null;
 		}
 
-		public Node(Attack attack, Node link)
+		public Node(AttackObject attack, Node link)
 		{
-			this.attack = new Attack(attack);
+			this.attack = attack;
 			this.link = link;
 		}
 	}
