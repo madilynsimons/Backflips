@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,25 +6,26 @@ public class Attack {
 
 	readonly string DEFAULTTITLE = "nameless";
 	readonly int DEFAULTPP = 20;
-	readonly int DEFAULTDAMAGE = 10;
+	readonly Size DEFAULTSIZE = Size.ONE;
+
 	string title;
 	int maxPP, currentPP;
-	int damage;
+	Size size;
 
 	public Attack()
 	{
 		title = DEFAULTTITLE;
 		maxPP = DEFAULTPP;
 		currentPP = DEFAULTPP;
-		damage = DEFAULTDAMAGE;
+		size = DEFAULTSIZE;
 	}
 
-	public Attack(string title, int pp, int damage)
+	public Attack(string title, int pp, int damage, Size size)
 	{
 		this.title = title;
 		maxPP = pp;
 		currentPP = pp;
-		this.damage = damage;
+		this.size = size;
 	}
 
 	public Attack(Attack a)
@@ -32,17 +33,16 @@ public class Attack {
 		title = a.title;
 		maxPP = a.maxPP;
 		currentPP = a.maxPP;
-		damage = a.damage;
 	}
 
 	public static bool operator ==(Attack a, Attack b)
 	{
-		return a.title == b.title && a.maxPP == b.maxPP && a.damage == b.damage;
+		return a.title == b.title && a.maxPP == b.maxPP;
 	}
 
 	public static bool operator !=(Attack a, Attack b)
 	{
-		return !(a.title == b.title && a.maxPP == b.maxPP && a.damage == b.damage);
+		return !(a.title == b.title && a.maxPP == b.maxPP);
 	}
 
 	public string toString()

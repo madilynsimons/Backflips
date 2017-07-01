@@ -8,16 +8,44 @@ Enemy                Enemy.cs
 Fighter              Fighter.cs
 Player               Player.cs
 
+#enumerations
+Size                 Size.cs
+
+
 #Attack
+/**
+ *  The Attack class represents an attack that a fighter can
+ *  use in order to fight and damage enemies
+ *  TITLE is what the attack is called
+ *  MAXPP is the maximum amount of times an attack can be used
+ *  CURRENTPP is the maximum amount of times an attack can be
+ *  used minus the amount of time the attack has been used
+ *  SIZE is how many slots the attack takes up
+ */
+
+public string title
+public int maxPP
+public int currentPP
+public Size size
+
+readonly string DEFAULTTITLE
+readonly int DEFAULT PP
+readonly Size DEFAULTSIZE
+
 public class Attack
 public Attack()
-public Attack(string title, int pp, int damage)
+public Attack(string title, int pp, int damage, Size size)
 public Attack(Attack a)
 public static bool operator ==(Attack a, Attack b)
 public static bool operator !=(Attack a, Attack b)
 public string toString()
 
+
 #Attack Collection
+/**
+ *  The Attack Collection class represents a collection of
+ *  attacks that a fighter can use
+ */
 public class AttackColl
 public AttackColl()
 public int get_howmany()
@@ -29,16 +57,52 @@ public void print()
 public bool equals(AttackColl obj)
 public class Node
 
+
 #Character
+/**
+ *  A character is any entity in the game
+ *  TITLE is the character’s name
+ */
+public string title
 public class Character : MonoBehavior
 public Character()
 public Character(string title)
 
+
 #Enemy
+/**
+ *  An enemy is a fighter that can attack a player and
+ *  cannot use the “steal move” attack
+ */
 public class Enemy : Fighter
 
+
 #Fighter
+/**
+ *  A fighter is a character that can fight other fighters
+ */
+
+int strength
+int maxHealth
+int currentHealth
+
+readonly int DEFAULTHEALTH
+readonly int DEFAULTSTRENGTH
+
 public class Fighter : Character
+public Fighter()
+public Fighter(int strength, int maxHealth)
+public void attack(Fighter c, int damage)
+public void takeDamage(int damage)
+public void heal(int health)
+private void die()
+
 
 #Player
+/**
+ *  Player is a fighter that an actual person can play as
+ *  A player can use the “steal move” attack
+ */
 public class Player : Fighter
+
+

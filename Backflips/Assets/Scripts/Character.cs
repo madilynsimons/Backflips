@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
-    string title;
+    public string title;
 
     public Character()
     {
