@@ -70,6 +70,7 @@ public class AttackColl {
 		return null;
 	}
 
+	// TODO -- rewrite belongs method to use array
 	public bool belongs(AttackObject a)
 	{
 		Node p = c;
@@ -79,7 +80,8 @@ public class AttackColl {
 		return p != null;
 	}
 
-	public bool belongs(string name)
+	// TODO -- rewrite belongs method to use array
+  	public bool belongs(string name)
 	{
 		Node p = c;
 		while((p != null) && (p.attack.getTitle() != name)){
