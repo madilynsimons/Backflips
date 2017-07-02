@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AttackColl {
 
+
 	protected Node c;
 	protected int howMany;
-	public AttackManager attackManager;
 
 	public AttackColl()
 	{
@@ -24,7 +24,6 @@ public class AttackColl {
 	{
 		if (howMany >= index) {
 			throw new UnassignedReferenceException ();
-			return null;
 		} else if (index == 0) {
 			return c.attack;
 		} else {
@@ -61,11 +60,13 @@ public class AttackColl {
 	public AttackObject getAttack(string title)
 	{
 		Node p = c;
+		p.print ();
 		while((p != null) && (p.attack.getTitle() != title)){
 			p = p.link;
 		}
-		if (p != null)
+		if (p != null) {
 			return p.attack;
+		}
 		return null;
 	}
 
@@ -87,7 +88,8 @@ public class AttackColl {
 		return p != null;
 	}
 		
-	public void insert(AttackObject a)
+
+	public virtual void insert(AttackObject a)
 	{
 		if (a != null) {
 			Node p = c;
@@ -100,14 +102,10 @@ public class AttackColl {
 				c = p;
 			}
 		}
+
 	}
 
-	public void insert(string title)
-	{
-		insert (getAttack (title));
-	}
-
-	public void omit(AttackObject a)
+	public virtual void omit(AttackObject a)
 	{
 		Node p = c;
 		Node previous = null;
@@ -148,6 +146,16 @@ public class AttackColl {
 		}return p == null;
 	}
 
+	public AttackObject[] toArray()
+	{
+		AttackObject[] arr = new AttackObject[howMany];
+		Node p = c;
+		for (int x = 0; x < howMany; x++) {
+			arr [x] = p.attack;
+			p = p.link;
+		}return arr;
+	}
+
 	public class Node
 	{
 		public AttackObject attack;
@@ -163,6 +171,15 @@ public class AttackColl {
 		{
 			this.attack = attack;
 			this.link = link;
+		}
+
+		public void print()
+		{
+			Node p = this;
+			while (p != null) {
+				Debug.Log (p.attack.toString());
+				p = p.link;
+			}
 		}
 	}
 }

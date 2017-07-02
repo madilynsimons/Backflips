@@ -5,42 +5,63 @@ using UnityEngine;
 public class FighterAttackColl : AttackColl
 {
 
+	AttackManager ATTACKS;
 	readonly int DEFAULTSLOTS = 6;
 	int maxNumOfSlots;
 	int currentNumOfSlots;
 
 	public FighterAttackColl()
 	{
+		ATTACKS = new AttackManager ();
 		maxNumOfSlots = DEFAULTSLOTS;
+		currentNumOfSlots = maxNumOfSlots;
 		c = new Node ();
 		howMany = 0;
 		insert ("TACKLE");
 	}
 
 	public FighterAttackColl(int i){
+		ATTACKS = new AttackManager ();
 		maxNumOfSlots = i;
+		currentNumOfSlots = maxNumOfSlots;
 		c = new Node ();
 		howMany = 0;
 		insert ("TACKLE");
 	}
 
-	new public void insert(AttackObject a)
+	public void insert(string name)
 	{
-		if (currentNumOfSlots + a.getSize() <= maxNumOfSlots) {
-			Node p = c;
-			while ((p != null) && (p.attack != a)) {
-				p = p.link;
+		AttackObject[] arr = ATTACKS.toArray ();
+		for (int x = 0; x< arr.Length; x++) {
+			if (arr [x].getTitle () == name) {
+				insert (arr [x]);
+				x = arr.Length;
 			}
-			if (p == null) {
-				howMany++;
-				p = new Node (a, c);
-				c = p;
-			}
-			currentNumOfSlots += a.getSize ();
+
 		}
 	}
 
-	new public void omit(AttackObject a)
+	public override void insert(AttackObject a)
+	{
+		
+		if (a!=null && ATTACKS.belongs (a)) {
+			if (currentNumOfSlots + a.getSize () <= maxNumOfSlots) {
+				Node p = c;
+				while ((p != null) && (p.attack != a)) {
+					p = p.link;
+				}
+				if (p == null) {
+					howMany++;
+					p = new Node (a, c);
+					c = p;
+				}
+				currentNumOfSlots += a.getSize ();
+			}
+		}
+	}
+		
+
+	public override void omit(AttackObject a)
 	{
 		if (a.getTitle() != "TACKLE") {
 			Node p = c;

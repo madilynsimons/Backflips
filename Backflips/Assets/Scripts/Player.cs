@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : Fighter {
 
+
 	public Player()
     {
-
+		
     }
 }

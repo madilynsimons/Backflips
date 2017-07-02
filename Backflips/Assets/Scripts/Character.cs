@@ -6,6 +6,7 @@ public class Character : MonoBehaviour {
 
     public string title;
 
+
     public Character()
     {
         title = null;

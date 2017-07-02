@@ -2,17 +2,16 @@
 using System.Collections;
 using System.IO;
 
-public class AttackManager : MonoBehaviour {
+public class AttackManager : AttackColl {
 
-	readonly string AttackListPath = "Documents/Attacks/AttackList.txt";
-	public AttackColl attackColl;
+	readonly static string AttackListPath = "Documents/Attacks/AttackList.txt";
 
 	// Use this for initialization
-	void Start () {
+	public AttackManager () {
 
 		string line;
-		attackColl = new AttackColl ();
 		StreamReader file = new StreamReader (AttackListPath);
+		int hCode = 0;
 
 		while((line = file.ReadLine()) != null)
 		{
@@ -39,21 +38,16 @@ public class AttackManager : MonoBehaviour {
 			}
 
 			AttackObject attack = new AttackObject
-				(a [0], int.Parse (a [1]), s);
+				(a [0], int.Parse (a [1]), s, hCode);
 
-			attackColl.insert (attack);
+			insert (attack);
+			hCode++;
 		}
 
 		// uncomment for debugging purposes
-		//attackColl.print ();
+		//print ();
 
 		file.Close ();
 	}
-
-	public AttackObject getAttack(string title)
-	{
-		return attackColl.getAttack (title);
-	}
-
 
 }
