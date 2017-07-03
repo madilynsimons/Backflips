@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Character : MonoBehaviour {
 
-    public string title;
+	readonly string DEFAULTTITLE = "nameless";
+	public string title;
 
+	public Character(){
+		title = DEFAULTTITLE;
+	}
 
-    public Character()
-    {
-        title = null;
-    }
-
-    public Character(string title)
-    {
-        this.title = title;
-    }
+	public Character(string title)
+	{
+		this.title = title;
+	}
 }
