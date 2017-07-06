@@ -17,6 +17,14 @@ public class PlayerController : MonoBehaviour{
 		player.y = Input.GetAxisRaw ("Vertical");
 	}
 
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.CompareTag("Enemy")){
+			Vector2 savedPosition = this.transform.position;
+			this.gameObject.SetActive (false);
+		}
+
+	}
+
 
 	void FixedUpdate(){
 		rb2d.velocity = player * speed;
